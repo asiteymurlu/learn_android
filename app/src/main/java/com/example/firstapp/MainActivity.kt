@@ -11,10 +11,10 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
-
-    var txtHello: TextView? = null
-    var button: Button? = null
-
+    var simpleLogin: TextView? = null
+    var password : TextView? = null
+    var username: TextView? = null
+    var login: Button? = null
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,16 +23,18 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
 
-        setContentView(R.layout.activity_main)
+
+        setContentView(R.layout.simple_login)
 
         //initiALIZE
-        txtHello = findViewById(R.id.txt_hello)
-        button = findViewById(R.id.button)
+        password = findViewById(R.id.password)
+        username= findViewById(R.id.username)
+        username= findViewById(R.id.login)
+        simpleLogin = findViewById(R.id.simple_login)
 
 
-        button?.setOnClickListener {
-            txtHello?.text = "Salam"
-        }
+
+
 
 
 
