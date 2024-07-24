@@ -3,8 +3,10 @@ package com.example.firstapp
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -65,10 +67,50 @@ class MainActivity : AppCompatActivity() {
 
 }*/
 
+val TAG = "MainActivityTest"
+
 class MainActivity: AppCompatActivity(){
+
+    private var imageView: ImageView? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.spider_man)
+        setContentView(R.layout.relative_layout_test)
+
+
+        Log.e(TAG, "OnCreate Called")
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.e(TAG, "OnStart Called")
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e(TAG, "OnStop Called")
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e(TAG, "OnDestroy Called")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e(TAG, "OnPause Called")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e(TAG, "OnResume Called")
+
+    }
+
 }
