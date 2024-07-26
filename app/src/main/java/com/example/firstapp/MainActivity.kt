@@ -77,7 +77,7 @@ class MainActivity: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.relative_layout_test)
+        setContentView(R.layout.constraint_layout_tutorial)
 
 
         Log.e(TAG, "OnCreate Called")
