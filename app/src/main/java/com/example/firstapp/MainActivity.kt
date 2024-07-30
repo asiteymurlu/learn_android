@@ -77,7 +77,7 @@ class MainActivity: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.constraint_layout_tutorial)
+        setContentView(R.layout.tashkagitmakas)
 
 
         Log.e(TAG, "OnCreate Called")
