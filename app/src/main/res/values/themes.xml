@@ -7,5 +7,10 @@
         <item name="colorAccent">@color/secondary</item>
     </style>
 
-    <style name="Theme.FirstApp" parent="Base.Theme.FirstApp" />
+    <style name="Theme.FirstApp" parent="Base.Theme.FirstApp" >
+    <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 </resources>
