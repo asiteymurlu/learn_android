@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -69,9 +70,14 @@ class MainActivity : AppCompatActivity() {
 
 val TAG = "MainActivityTest"
 
-class MainActivity: AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
-    private var imageView: ImageView? = null
+    private lateinit var txtFirstScore: TextView
+    private lateinit var txtSecondScore: TextView
+    private lateinit var firstImageView: ImageView
+    private lateinit var secondImageView: ImageView
+    var firstPlayerScore = 0
+    var secondPlayerScore = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,37 +86,84 @@ class MainActivity: AppCompatActivity(){
         setContentView(R.layout.tashkagitmakas)
 
 
-        Log.e(TAG, "OnCreate Called")
+        setUpView()
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.e(TAG, "OnStart Called")
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.e(TAG, "OnStop Called")
+    fun setUpView() {
+        txtFirstScore = findViewById(R.id.score_me)
+        txtSecondScore = findViewById(R.id.score_other)
+        firstImageView = findViewById(R.id.imageView4)
+        secondImageView = findViewById(R.id.second_img)
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e(TAG, "OnDestroy Called")
+    fun playGame(view: View) {
+        var firstImage = 0
+        var secondImage = 0
+        var result = Winner.DRAW
 
+        when (view.id) {
+            R.id.tash -> {
+                firstImage = R.drawable.tash
+                secondImage = Generator.getImage()
+
+                setImageResources(firstImage, secondImage)
+
+                result = Comparator.compare(firstImage, secondImage)
+
+                writeScore(result)
+            }
+
+            R.id.kagit -> {
+                firstImage = R.drawable.kagit
+                secondImage = Generator.getImage()
+
+                setImageResources(firstImage, secondImage)
+
+                result = Comparator.compare(firstImage, secondImage)
+
+                writeScore(result)
+            }
+
+            R.id.makas -> {
+                firstImage = R.drawable.makas
+                secondImage = Generator.getImage()
+
+                setImageResources(firstImage, secondImage)
+
+                result = Comparator.compare(firstImage, secondImage)
+
+                writeScore(result)
+            }
+
+        }
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.e(TAG, "OnPause Called")
-
+    fun setImageResources (firstImage:Int, secondImage:Int){
+        firstImageView.setImageResource(firstImage)
+        secondImageView.setImageResource(secondImage)
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.e(TAG, "OnResume Called")
-
+    fun writeScore (winner: Winner){
+        when(winner) {
+            Winner.DRAW -> {
+                Toast.makeText(this, "Berabere", Toast.LENGTH_SHORT).show()
+            }
+            Winner.FIRST -> {
+                firstPlayerScore++
+                txtFirstScore.text = firstPlayerScore.toString()
+            }
+            Winner.SECOND -> {
+                secondPlayerScore++
+                txtSecondScore.text = secondPlayerScore.toString()
+            }
+        }
     }
 
+    fun reset (view:View){
+        firstPlayerScore = 0
+        secondPlayerScore = 0
+        txtFirstScore.text = firstPlayerScore.toString()
+        txtSecondScore.text = secondPlayerScore.toString()
+    }
 }
