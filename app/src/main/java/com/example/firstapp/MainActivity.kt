@@ -1,20 +1,12 @@
 package com.example.firstapp
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.button.MaterialButton
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.example.firstapp.fragments.AddFragment
+import com.example.firstapp.fragments.HomeFragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /*
 class MainActivity : AppCompatActivity() {
@@ -72,24 +64,45 @@ val TAG = "MainActivityTest"
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var txtFirstScore: TextView
+    /*private lateinit var txtFirstScore: TextView
     private lateinit var txtSecondScore: TextView
     private lateinit var firstImageView: ImageView
     private lateinit var secondImageView: ImageView
     var firstPlayerScore = 0
-    var secondPlayerScore = 0
+    var secondPlayerScore = 0*/
+
+    private var fragmentManager: FragmentManager? = null
+    private var fab: FloatingActionButton? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.tashkagitmakas)
+        setContentView(R.layout.activity_main)
+
+        fab = findViewById(R.id.floatingActionButton)
+
+        fragmentManager = supportFragmentManager
 
 
-        setUpView()
+        changeFragment(HomeFragment())
+
+
+
+        fab?.setOnClickListener {
+            changeFragment(AddFragment())
+        }
     }
 
-    fun setUpView() {
+    fun changeFragment(fragment: Fragment){
+        fragmentManager?.beginTransaction()
+            ?.replace(R.id.frg_container,fragment)
+            ?.commit()
+    }
+
+
+
+    /*fun setUpView() {
         txtFirstScore = findViewById(R.id.score_me)
         txtSecondScore = findViewById(R.id.score_other)
         firstImageView = findViewById(R.id.imageView4)
@@ -165,5 +178,5 @@ class MainActivity : AppCompatActivity() {
         secondPlayerScore = 0
         txtFirstScore.text = firstPlayerScore.toString()
         txtSecondScore.text = secondPlayerScore.toString()
-    }
+    }*/
 }
