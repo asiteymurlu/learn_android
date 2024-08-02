@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstApp"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".ContextMenu"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -23,12 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".HomeActivity">
-
-        </activity>
-
-
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
 </manifest>
